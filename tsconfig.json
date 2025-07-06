@@ -20,8 +20,18 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    // Adicione isso se os erros persistirem:
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ]
   },
   "include": [
     "src"
+  ],
+  // Adicione isso para ignorar tipos ausentes específicos:
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
   ]
 }
