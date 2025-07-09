@@ -17,6 +17,14 @@ const AdministracaoRestaurantes = () => {
             
     }, [])
 
+    const excluir = (restauranteAhSerExcluido : IRestaurante)=>{
+        axios.delete(`http://localhost:8000/api/v2/restaurantes/${restauranteAhSerExcluido.id}/`)
+            .then(()=>{
+                const listaDeRestaurante = restaurantes.filter(restaurante => restaurante.id !== restauranteAhSerExcluido.id)
+                setRestaurantes([...listaDeRestaurante])
+            })
+    }
+
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -42,7 +50,7 @@ const AdministracaoRestaurantes = () => {
                             [<Link to={`/admin/restaurantes/${restaurante.id}`}>Editar</Link>]
                         </TableCell>
                         <TableCell>
-                            <Button variant="outlined" color="error">
+                            <Button variant="outlined" color="error" onClick={()=> excluir(restaurante)}>
                                 Excluir
                             </Button>
                         </TableCell>
