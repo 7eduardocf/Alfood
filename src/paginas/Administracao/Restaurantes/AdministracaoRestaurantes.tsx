@@ -11,10 +11,8 @@ const AdministracaoRestaurantes = () => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/v2/restaurantes/")
             .then(response =>{
-                console.log(response.data);
                 setRestaurantes(response.data)   
-            })
-            
+            })  
     }, [])
 
     const excluir = (restauranteAhSerExcluido : IRestaurante)=>{
@@ -29,6 +27,11 @@ const AdministracaoRestaurantes = () => {
         <TableContainer component={Paper}>
             <Table>
                 <TableHead>
+                    <TableRow>
+                        <TableCell>
+                            Pesquise seu restaurante:
+                        </TableCell>
+                    </TableRow>
                     <TableRow>
                         <TableCell>
                             Nome
