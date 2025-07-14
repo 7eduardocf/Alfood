@@ -54,8 +54,8 @@ const FormularioRestaurante = () => {
                                     Restaurantes
                                 </Button>
                             </Link>
-                            <Link>
-                                <Button sx={{ my: 2, color: "white" }} component={RouterLink} to="/admin/restaurantes/novo/">
+                            <Link component={RouterLink} to="/admin/restaurantes/novo/">
+                                <Button sx={{ my: 2, color: "white" }} >
                                     Novo restaurante
                                 </Button>
                             </Link>
