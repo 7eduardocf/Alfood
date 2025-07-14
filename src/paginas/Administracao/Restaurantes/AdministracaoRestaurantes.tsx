@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import IRestaurante from "../../../interfaces/IRestaurante"
-import { AppBar, Box, Button, Container, Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar, Typography } from "@mui/material"
+import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 import { Link as RouterLink } from "react-router-dom"
 import http from "../../../Http"
 
@@ -24,75 +24,43 @@ const AdministracaoRestaurantes = () => {
     }
 
     return (
-
-        <>
-            <AppBar position="static">
-                <Container maxWidth="xl">
-                    <Toolbar>
-                        <Typography variant="h6">
-                            Administração
-                        </Typography>
-                        <Box sx={{ display: "flex", flexGrow: 1 }}>
-                            <Link component={RouterLink} to="/admin/restaurantes">
-                                <Button sx={{ my: 2, color: "white" }}>
-                                    Restaurantes
-                                </Button>
-                            </Link>
-                            <Link component={RouterLink} to="/admin/restaurantes/novo/">
-                                <Button sx={{ my: 2, color: "white" }} >
-                                    Novo restaurante
-                                </Button>
-                            </Link>
-                        </Box>
-                    </Toolbar>
-                </Container>
-            </AppBar>
-
-            <Box>
-                <Container maxWidth="lg" sx={{ mt: 1 }}>
-                    <Paper sx={{ p: 2 }}>
-                        {/*Conteudo da pagina */}
-                        <TableContainer component={Paper}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>
-                                            Pesquise seu restaurante:
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell>
-                                            Nome
-                                        </TableCell>
-                                        <TableCell>
-                                            Editar
-                                        </TableCell>
-                                        <TableCell>
-                                            Excluir
-                                        </TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {restaurantes.map(restaurante => <TableRow key={restaurante.id}>
-                                        <TableCell>
-                                            {restaurante.nome}
-                                        </TableCell>
-                                        <TableCell>
-                                            [<RouterLink to={`/admin/restaurantes/${restaurante.id}`}>Editar</RouterLink>]
-                                        </TableCell>
-                                        <TableCell>
-                                            <Button variant="outlined" color="error" onClick={() => excluir(restaurante)}>
-                                                Excluir
-                                            </Button>
-                                        </TableCell>
-                                    </TableRow>)}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Paper>
-                </Container>
-            </Box>
-        </>
+        <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>
+                            Pesquise seu restaurante:
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            Nome
+                        </TableCell>
+                        <TableCell>
+                            Editar
+                        </TableCell>
+                        <TableCell>
+                            Excluir
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {restaurantes.map(restaurante => <TableRow key={restaurante.id}>
+                        <TableCell>
+                            {restaurante.nome}
+                        </TableCell>
+                        <TableCell>
+                            [<RouterLink to={`/admin/restaurantes/${restaurante.id}`}>Editar</RouterLink>]
+                        </TableCell>
+                        <TableCell>
+                            <Button variant="outlined" color="error" onClick={() => excluir(restaurante)}>
+                                Excluir
+                            </Button>
+                        </TableCell>
+                    </TableRow>)}
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
 
