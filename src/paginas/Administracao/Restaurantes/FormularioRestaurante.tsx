@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom"
 import IRestaurante from "../../../interfaces/IRestaurante"
 import http from "../../../Http"
 
+import {Link as RouterLink} from "react-router-dom"
+
 const FormularioRestaurante = () => {
 
     const parametros = useParams()
@@ -47,13 +49,13 @@ const FormularioRestaurante = () => {
                             Administração
                         </Typography>
                         <Box sx={{ display: "flex", flexGrow: 1 }}>
-                            <Link>
+                            <Link component={RouterLink} to="/admin/restaurantes">
                                 <Button sx={{ my: 2, color: "white" }}>
                                     Restaurantes
                                 </Button>
                             </Link>
                             <Link>
-                                <Button sx={{ my: 2, color: "white" }}>
+                                <Button sx={{ my: 2, color: "white" }} component={RouterLink} to="/admin/restaurantes/novo/">
                                     Novo restaurante
                                 </Button>
                             </Link>
