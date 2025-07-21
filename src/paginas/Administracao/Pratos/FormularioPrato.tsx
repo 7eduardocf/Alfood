@@ -2,6 +2,7 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typo
 import { useEffect, useState } from "react"
 import http from "../../../Http"
 import ITag from "../../../interfaces/ITag"
+import IRestaurante from "../../../interfaces/IRestaurante"
 
 
 const FormularioPrato = () => {
@@ -9,11 +10,18 @@ const FormularioPrato = () => {
 
     const [nomeDoPrato, setNomeDoPrato] = useState("")
     const [descricao, setDescricaoDoPrato] = useState("")
+
+    const [restaurante, setRestaurante] = useState("")
+    const [tag, setTag] = useState("")
+
+    const [restaurantes, setRestaurantes] = useState<IRestaurante[]>([])
     const [tags, setTags] = useState<ITag[]>([])
 
     useEffect(()=>{
         http.get< {tags: ITag[]} >("tags/")
             .then(response => setTags(response.data.tags))
+        http.get<IRestaurante[]>("restaurantes/")
+            .then(response => setRestaurantes(response.data))
     },[])
 
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
@@ -47,9 +55,17 @@ const FormularioPrato = () => {
                 />
                 <FormControl margin="dense" fullWidth required>
                     <InputLabel id="select-tag">Tag</InputLabel>
-                    <Select labelId="select-tag" value={tag} onChange={evento => setTags(evento.target.value)}>
+                    <Select labelId="select-tag" value={tag} onChange={evento => setTag(evento.target.value)}>
                         {tags.map(tag => <MenuItem value={tag.id} key={tag.id}>
                             {tag.value}
+                        </MenuItem>)}
+                    </Select>
+                </FormControl>
+                <FormControl margin="dense" fullWidth required>
+                    <InputLabel id="select-restaurante">Restaurante</InputLabel>
+                    <Select labelId="select-restaurante" value={restaurante} onChange={evento => setRestaurante(evento.target.value)}>
+                        {restaurantes.map(restaurante => <MenuItem value={restaurante.id} key={restaurante.id}>
+                            {restaurante.nome}
                         </MenuItem>)}
                     </Select>
                 </FormControl>
