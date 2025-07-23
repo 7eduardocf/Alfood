@@ -36,6 +36,29 @@ const FormularioPrato = () => {
 
     const aoSubmeterForm = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
+        
+        const formData = new FormData()
+
+        formData.append("nome", nomeDoPrato)
+        formData.append("descrição", descricao)
+        formData.append("tag",tag)
+        formData.append("restaurante", restaurante)
+
+        if(imagem){
+            formData.append("imagem", imagem)
+        }
+
+        http.request({
+            url: "pratos/",
+            method: "POST",
+            headers:{
+                "Content-Type": "multipart/form-data"
+            },
+            data: formData
+        })
+            .then(() => alert("Prato cadastrado com sucesso!"))
+            .catch(erro=> console.log(erro)
+            )
 
     }
 
@@ -80,7 +103,7 @@ const FormularioPrato = () => {
                     </Select>
                 </FormControl>
 
-                <input type="file" onChange={selecionarArquivo}/>
+                <input className="" type="file" onChange={selecionarArquivo}/>
 
                 <Button sx={{ marginTop: 1 }} type="submit" fullWidth variant="outlined">Salvar</Button>
             </Box>
