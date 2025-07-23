@@ -89,7 +89,7 @@ const FormularioPrato = () => {
                 <FormControl margin="dense" fullWidth required>
                     <InputLabel id="select-tag">Tag</InputLabel>
                     <Select labelId="select-tag" value={tag} onChange={evento => setTag(evento.target.value)}>
-                        {tags.map(tag => <MenuItem value={tag.id} key={tag.id}>
+                        {tags.map(tag => <MenuItem value={tag.id} key={tag.value}>
                             {tag.value}
                         </MenuItem>)}
                     </Select>
